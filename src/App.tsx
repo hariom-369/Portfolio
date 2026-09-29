@@ -6,6 +6,8 @@ import Skills from './components/Skills';
 import AchievementsEducationLeadership from './components/AchievementsEducationLeadership';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CursorGlow from './components/CursorGlow';
+import ParticleNetwork from './components/ParticleNetwork';
 
 export default function App() {
   return (
@@ -29,6 +31,9 @@ export default function App() {
         Skip to main content
       </a>
 
+      <CursorGlow />
+      <ParticleNetwork />
+      
       <Navbar />
 
       <main id="main-content">

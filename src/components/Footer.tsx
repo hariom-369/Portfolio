@@ -79,7 +79,7 @@ export default function Footer() {
 
         .logo-mark {
           width: 32px; height: 32px;
-          background: var(--color-accent);
+          background: linear-gradient(135deg, var(--color-cyan) 0%, var(--color-accent) 100%);
           color: #fff;
           border-radius: var(--r-md);
           display: flex; align-items: center; justify-content: center;

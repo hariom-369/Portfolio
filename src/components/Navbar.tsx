@@ -184,7 +184,7 @@ export default function Navbar() {
         .nav-logo-mark {
           width: 36px;
           height: 36px;
-          background: var(--color-accent);
+          background: linear-gradient(135deg, var(--color-cyan) 0%, var(--color-accent) 100%);
           border-radius: var(--radius-md);
           display: flex;
           align-items: center;
@@ -200,7 +200,7 @@ export default function Navbar() {
 
         .nav-logo:hover .nav-logo-mark {
           transform: rotate(-5deg) scale(1.05);
-          box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+          box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
         }
 
         .nav-logo-text {
@@ -237,8 +237,9 @@ export default function Navbar() {
         }
 
         .nav-link.active {
-          color: var(--color-text-primary);
-          background: var(--color-accent-dim);
+          color: #fff;
+          background: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(99, 102, 241, 0.15) 100%);
+          box-shadow: 0 0 15px rgba(34, 211, 238, 0.15);
         }
 
         .nav-link.active::after {

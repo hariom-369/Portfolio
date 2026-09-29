@@ -14,6 +14,10 @@ export const personal = {
   phone: '+91-7849920674',
   location: 'IIIT Kota, Rajasthan, India',
   resumeFile: '/Hariom_Choudhary_Resume.pdf',
+  socials: {
+    linkedin: 'https://www.linkedin.com/in/hariom-choudhary-07612528a',
+    github: 'https://github.com/hariom-369',
+  }
 };
 
 export const education = [
@@ -78,7 +82,7 @@ export const projects = [
       'Implementing PDF statement generation with dynamic financial data',
       'Managing complex state across cash book, ledger, and budget modules',
     ],
-    links: { github: null, demo: null },
+    links: { github: 'https://github.com/hariom-369/lux-cashbook', demo: 'https://lux-cashbook.vercel.app/' },
   },
   {
     id: 'ecommerce',
@@ -121,7 +125,7 @@ export const projects = [
       'Building clean RESTful APIs with consistent error handling patterns',
       'Managing product inventory and order state transitions',
     ],
-    links: { github: null, demo: null },
+    links: { github: 'https://github.com/hariom-369/ecommerce-platform', demo: 'https://hariom-ecommerce.vercel.app/' },
   },
   {
     id: 'ai-career-mentor',
@@ -172,7 +176,7 @@ export const projects = [
       'Connecting Python/Flask ML backend with Node.js REST API layer',
       'Designing the recommendation algorithm for relevance and accuracy',
     ],
-    links: { github: null, demo: null },
+    links: { github: 'https://github.com/hariom-369/ai-career-mentor', demo: null },
   },
 ];
 
