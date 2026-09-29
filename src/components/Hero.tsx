@@ -332,6 +332,13 @@ export default function Hero() {
           z-index: 1;
         }
 
+        @media (min-width: 1440px) {
+          .hero-body {
+            grid-template-columns: 1fr 480px;
+            gap: 6rem;
+          }
+        }
+
         /* ── Left ───────────────────────────────────────── */
         .hero-left {
           display: flex;
@@ -345,21 +352,25 @@ export default function Hero() {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          padding: 0.35rem 1rem;
+          padding: 0.35rem 0.85rem;
           background: rgba(16,185,129,0.07);
           border: 1px solid rgba(16,185,129,0.2);
           border-radius: 9999px;
-          font-size: 0.78rem;
+          font-size: 0.75rem;
           font-weight: 500;
           color: var(--color-emerald);
           width: fit-content;
+          max-width: 100%;
           letter-spacing: 0.01em;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         /* Name */
         .hero-name {
           font-family: var(--font-display);
-          font-size: clamp(3.2rem, 8vw, 5.5rem);
+          font-size: clamp(2.6rem, 8vw, 5.5rem);
           font-weight: 900;
           letter-spacing: -0.045em;
           line-height: 0.95;
@@ -562,10 +573,10 @@ export default function Hero() {
         }
 
         /* ── Responsive ─────────────────────────────────── */
-        @media (max-width: 960px) {
+        @media (max-width: 1024px) {
           .hero-body {
             grid-template-columns: 1fr;
-            gap: 3rem;
+            gap: 4rem;
             padding-top: 3rem;
             padding-bottom: 3rem;
             text-align: center;
@@ -573,19 +584,27 @@ export default function Hero() {
 
           .hero-left { align-items: center; }
 
-          .hero-bio { text-align: center; }
+          .hero-bio { text-align: center; margin: 0 auto; }
 
           .hero-ctas { justify-content: center; }
 
-          .hero-right { order: -1; }
-
-          .hero-stats { max-width: 360px; margin: 0 auto; }
+          .hero-right { order: -1; max-width: 500px; margin: 0 auto; width: 100%; }
 
           .hero-scroll { display: none; }
         }
 
-        @media (max-width: 480px) {
-          .hero-body { padding-top: 2rem; padding-bottom: 2.5rem; }
+        @media (max-width: 768px) {
+          .hero-name {
+            font-size: clamp(2.8rem, 8vw, 4rem);
+          }
+        }
+
+        @media (max-width: 640px) {
+          .hero-body { padding-top: 2rem; padding-bottom: 2rem; gap: 3rem; }
+
+          .hero-name {
+            font-size: clamp(2.2rem, 10vw, 3.2rem);
+          }
 
           .hero-ctas {
             flex-direction: column;
@@ -595,6 +614,30 @@ export default function Hero() {
           .hero-ctas .btn {
             width: 100%;
             justify-content: center;
+          }
+          
+          .hero-stats {
+            gap: 1rem;
+            padding: 1rem;
+          }
+          
+          .hero-stat-val {
+            font-size: 1.25rem;
+          }
+        }
+
+        /* ── 320px ultra-small fix ── */
+        @media (max-width: 360px) {
+          .hero-name {
+            font-size: clamp(2rem, 12vw, 2.6rem);
+            letter-spacing: -0.03em;
+          }
+          .hero-status-pill {
+            font-size: 0.68rem;
+            padding: 0.3rem 0.65rem;
+          }
+          .hero-bio {
+            font-size: 0.95rem;
           }
         }
       `}</style>

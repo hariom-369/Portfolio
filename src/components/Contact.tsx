@@ -48,7 +48,7 @@ export default function Contact() {
           {/* Header */}
           <div className="contact-header reveal">
             <div className="section-label">Contact</div>
-            <h2 className="section-heading" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}>
+            <h2 className="section-heading" style={{ fontSize: 'clamp(2rem, 6vw, 4.5rem)' }}>
               Let's build something <br />
               <span className="gradient-text">meaningful</span>
             </h2>
@@ -245,10 +245,13 @@ export default function Contact() {
         .primary-card .card-label { color: var(--color-accent-light); }
 
         .card-val {
-          font-size: 1.05rem;
+          font-size: 1rem;
           font-weight: 600;
           color: var(--color-text-primary);
           transition: color var(--t-fast);
+          overflow-wrap: break-word;
+          word-break: break-all;
+          min-width: 0;
         }
 
         .card-val:hover {
@@ -294,12 +297,26 @@ export default function Contact() {
           color: var(--color-emerald);
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
           .contact-actions {
             flex-direction: column;
+            width: 100%;
+          }
+          .contact-actions .btn {
+            width: 100%;
+            justify-content: center;
           }
           .contact-card {
             flex-wrap: wrap;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .card-val {
+            font-size: 0.85rem;
+          }
+          .contact-subtitle {
+            font-size: 0.95rem;
           }
         }
       `}</style>

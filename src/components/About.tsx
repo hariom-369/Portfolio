@@ -38,9 +38,15 @@ export default function About() {
         <div className="about-grid">
           {/* Left: Bio & Meta */}
           <div className="about-left reveal-left">
-            <div className="about-profile">
-              <div className="profile-image-wrap">
-                <img src="/profile.png" alt="Hariom Choudhary" className="profile-image" />
+            <div className="about-visual" aria-hidden="true">
+              <div className="tech-badge">
+                <div className="tech-badge-inner">
+                  <svg viewBox="0 0 100 100" className="tech-badge-svg">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="8 6" className="spin-slow" />
+                    <circle cx="50" cy="50" r="30" fill="none" stroke="var(--color-accent)" strokeWidth="1" opacity="0.6" />
+                    <path d="M50 25 L72 65 L28 65 Z" fill="none" stroke="currentColor" strokeWidth="2" className="pulse-opacity" />
+                  </svg>
+                </div>
                 <div className="profile-glow" aria-hidden="true"></div>
               </div>
             </div>
@@ -144,32 +150,56 @@ export default function About() {
           gap: var(--s8);
         }
 
-        .about-profile {
+        .about-visual {
           margin-bottom: var(--s2);
         }
 
-        .profile-image-wrap {
+        .tech-badge {
           position: relative;
-          width: 140px;
-          height: 140px;
-          border-radius: var(--r-2xl);
-          background: linear-gradient(to bottom right, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-          border: 1px solid var(--color-border);
-          padding: 4px;
+          width: 120px;
+          height: 120px;
           display: flex;
           align-items: center;
           justify-content: center;
         }
 
-        .profile-image {
+        .tech-badge-inner {
+          position: relative;
           width: 100%;
           height: 100%;
-          object-fit: cover;
-          border-radius: calc(var(--r-2xl) - 4px);
-          position: relative;
           z-index: 2;
-          /* Optional: slightly desaturate the image to match the dark theme */
-          filter: grayscale(20%) contrast(1.1);
+          color: var(--color-text-secondary);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+          border: 1px solid var(--color-border);
+          border-radius: var(--r-2xl);
+          padding: 1.25rem;
+        }
+
+        .tech-badge-svg {
+          width: 100%;
+          height: 100%;
+        }
+
+        .spin-slow {
+          transform-origin: center;
+          animation: spin-slow 20s linear infinite;
+        }
+
+        .pulse-opacity {
+          animation: pulse-opacity 3s ease-in-out infinite;
+        }
+
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse-opacity {
+          0%, 100% { opacity: 0.4; }
+          50% { opacity: 1; }
         }
 
         .profile-glow {
@@ -188,6 +218,8 @@ export default function About() {
           font-size: 1.05rem;
           line-height: 1.8;
           color: var(--color-text-secondary);
+          overflow-wrap: break-word;
+          word-break: break-word;
         }
 
         .about-bio strong {
@@ -296,10 +328,10 @@ export default function About() {
         }
 
         /* ── Responsive ── */
-        @media (max-width: 960px) {
+        @media (max-width: 1024px) {
           .about-grid {
             grid-template-columns: 1fr;
-            gap: var(--s12);
+            gap: var(--s10);
           }
           
           .about-meta {
@@ -307,7 +339,7 @@ export default function About() {
           }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
           .about-meta {
             grid-template-columns: 1fr;
             gap: var(--s5);
@@ -317,6 +349,23 @@ export default function About() {
             padding: var(--s5);
             flex-direction: column;
             gap: var(--s4);
+          }
+          
+          .tech-badge {
+            width: 100px;
+            height: 100px;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .about-bio {
+            font-size: 0.95rem;
+          }
+          .about-meta {
+            padding: var(--s4);
+          }
+          .meta-value {
+            font-size: 0.82rem;
           }
         }
       `}</style>

@@ -169,7 +169,7 @@ export default function Skills() {
         /* ── Grid ── */
         .skills-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
           gap: var(--s6);
         }
 
@@ -255,6 +255,12 @@ export default function Skills() {
         }
 
         /* ── Responsive ── */
+        @media (max-width: 1024px) {
+          .skills-grid {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+          }
+        }
+
         @media (max-width: 768px) {
           .skills-filter {
             width: 100%;
@@ -265,15 +271,27 @@ export default function Skills() {
           }
           
           .skills-filter::-webkit-scrollbar {
-            height: 4px;
+            height: 3px;
           }
           
           .filter-btn {
             flex-shrink: 0;
           }
-          
+        }
+
+        @media (max-width: 640px) {
           .skills-grid {
             grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .skill-category {
+            padding: var(--s6);
+          }
+          .filter-btn {
+            font-size: 0.78rem;
+            padding: var(--s1) var(--s3);
           }
         }
       `}</style>

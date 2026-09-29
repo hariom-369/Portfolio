@@ -32,6 +32,12 @@ export default function Navbar() {
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
   return (
     <>
       <nav className={`navbar${scrolled ? ' scrolled' : ''}`} role="navigation" aria-label="Main navigation">
@@ -360,6 +366,12 @@ export default function Navbar() {
 
           .nav-hamburger {
             display: flex;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .nav-logo-text {
+            display: none;
           }
         }
       `}</style>

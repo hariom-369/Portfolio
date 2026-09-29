@@ -231,7 +231,7 @@ export default function AchievementsEducationLeadership() {
 
         .ach-metric {
           font-family: var(--font-display);
-          font-size: 3rem;
+          font-size: clamp(2rem, 5vw, 3rem);
           font-weight: 900;
           letter-spacing: -0.05em;
           line-height: 1;
@@ -350,7 +350,7 @@ export default function AchievementsEducationLeadership() {
 
         .col-heading {
           font-family: var(--font-display);
-          font-size: 1.75rem;
+          font-size: clamp(1.35rem, 3vw, 1.75rem);
           font-weight: 800;
           letter-spacing: -0.03em;
         }
@@ -510,15 +510,24 @@ export default function AchievementsEducationLeadership() {
         }
 
         /* ── Responsive ── */
-        @media (max-width: 960px) {
+        @media (max-width: 1024px) {
           .ach-grid { grid-template-columns: 1fr; }
           .ael-bottom { grid-template-columns: 1fr; gap: var(--s12); }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
           .ach-card { flex-direction: column; padding: var(--s6); gap: var(--s4); }
           .dsa-dash { padding: var(--s6); }
           .lead-card { flex-direction: column; padding: var(--s5); gap: var(--s4); }
+        }
+
+        @media (max-width: 360px) {
+          .ach-metric { font-size: clamp(1.6rem, 8vw, 2rem); }
+          .ach-label { font-size: 0.95rem; }
+          .ach-desc { font-size: 0.8rem; }
+          .dsa-title { font-size: 1.25rem; }
+          .lead-desc, .tl-desc { font-size: 0.8rem; }
+          .ael-top { margin-bottom: var(--s16); }
         }
       `}</style>
     </section>

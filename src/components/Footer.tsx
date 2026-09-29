@@ -157,7 +157,7 @@ export default function Footer() {
         }
 
         /* ── Responsive ── */
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
           .footer-layout {
             grid-template-columns: 1fr;
             text-align: center;

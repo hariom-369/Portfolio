@@ -234,6 +234,14 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           justify-content: center;
           padding: var(--space-4);
           animation: fadeIn 0.2s ease;
+          overflow-y: auto;
+        }
+
+        @media (max-width: 640px) {
+          .modal-overlay {
+            align-items: flex-start;
+            padding: 0.75rem;
+          }
         }
 
         .modal-panel {
@@ -247,6 +255,13 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
           outline: none;
           position: relative;
+        }
+
+        @media (max-width: 640px) {
+          .modal-panel {
+            max-height: calc(100vh - 1.5rem);
+            border-radius: var(--radius-xl);
+          }
         }
 
         .modal-panel::-webkit-scrollbar { width: 4px; }
@@ -286,8 +301,8 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         }
 
         .modal-close {
-          width: 36px;
-          height: 36px;
+          width: 44px;
+          height: 44px;
           background: var(--color-bg-glass);
           border: 1px solid var(--color-border);
           border-radius: var(--radius-md);
@@ -500,7 +515,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           color: var(--color-text-muted);
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           .modal-ps-grid {
             grid-template-columns: 1fr;
           }
@@ -512,9 +527,17 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           .modal-body {
             padding: var(--space-6);
           }
-
+        }
+        
+        @media (max-width: 640px) {
           .modal-title {
             font-size: 1.35rem;
+          }
+          .modal-header {
+            padding: var(--space-4);
+          }
+          .modal-body {
+            padding: var(--space-4);
           }
         }
       `}</style>
@@ -595,16 +618,28 @@ const archStyles = `
   }
 
   /* Pipeline */
+  .pipeline-viz {
+    overflow: hidden;
+  }
+
   .pipeline-steps {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 0;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99,102,241,0.3) transparent;
   }
+
+  .pipeline-steps::-webkit-scrollbar { height: 3px; }
+  .pipeline-steps::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 3px; }
 
   .pipeline-step-wrap {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
   }
 
   .pipeline-step {
@@ -631,6 +666,7 @@ const archStyles = `
     text-align: center;
     color: var(--color-text-secondary);
     transition: color var(--transition-fast);
+    white-space: nowrap;
   }
 
   .pipeline-connector {
@@ -957,7 +993,7 @@ export default function Projects() {
           line-height: 1.4;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
           .project-content {
             grid-template-columns: 1fr;
             gap: var(--space-8);
@@ -968,7 +1004,7 @@ export default function Projects() {
           }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
           .project-card {
             padding: var(--space-6);
           }
