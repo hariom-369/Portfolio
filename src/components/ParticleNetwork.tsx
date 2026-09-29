@@ -49,9 +49,9 @@ export default function ParticleNetwork() {
       color: string;
       baseAlpha: number;
 
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+      constructor(canvasWidth: number, canvasHeight: number) {
+        this.x = Math.random() * canvasWidth;
+        this.y = Math.random() * canvasHeight;
         this.size = Math.random() * 2.5 + 0.5;
         // Slower, elegant movement
         this.speedX = (Math.random() - 0.5) * 0.6;
@@ -63,44 +63,44 @@ export default function ParticleNetwork() {
         this.color = isCyan ? `rgba(34, 211, 238, ${this.baseAlpha})` : `rgba(99, 102, 241, ${this.baseAlpha})`;
       }
 
-      update() {
+      update(canvasWidth: number, canvasHeight: number) {
         this.x += this.speedX;
         this.y += this.speedY;
 
         // Wrap around edges smoothly
-        if (this.x > canvas.width) this.x = 0;
-        else if (this.x < 0) this.x = canvas.width;
+        if (this.x > canvasWidth) this.x = 0;
+        else if (this.x < 0) this.x = canvasWidth;
         
-        if (this.y > canvas.height) this.y = 0;
-        else if (this.y < 0) this.y = canvas.height;
+        if (this.y > canvasHeight) this.y = 0;
+        else if (this.y < 0) this.y = canvasHeight;
       }
 
-      draw() {
-        if (!ctx) return;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
+      draw(context: CanvasRenderingContext2D) {
+        context.beginPath();
+        context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        context.fillStyle = this.color;
+        context.fill();
         
         // Subtle glow for dots
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = this.color;
+        context.shadowBlur = 8;
+        context.shadowColor = this.color;
       }
     }
 
     const initParticles = () => {
+      const currentCanvas = canvasRef.current;
+      if (!currentCanvas) return;
       particles = [];
       // Adjust density for performance and aesthetics (max 120 particles)
-      const numberOfParticles = Math.min(Math.floor((canvas.width * canvas.height) / 10000), 120);
+      const numberOfParticles = Math.min(Math.floor((currentCanvas.width * currentCanvas.height) / 10000), 120);
       for (let i = 0; i < numberOfParticles; i++) {
-        particles.push(new Particle());
+        particles.push(new Particle(currentCanvas.width, currentCanvas.height));
       }
     };
 
-    const connect = () => {
-      if (!ctx) return;
+    const connect = (context: CanvasRenderingContext2D) => {
       // Reset shadow for lines to avoid performance hit
-      ctx.shadowBlur = 0;
+      context.shadowBlur = 0;
       
       for (let a = 0; a < particles.length; a++) {
         for (let b = a; b < particles.length; b++) {
@@ -110,12 +110,12 @@ export default function ParticleNetwork() {
 
           if (distance < 130) {
             const opacity = 1 - (distance / 130);
-            ctx.strokeStyle = `rgba(99, 102, 241, ${opacity * 0.25})`;
-            ctx.lineWidth = 0.8;
-            ctx.beginPath();
-            ctx.moveTo(particles[a].x, particles[a].y);
-            ctx.lineTo(particles[b].x, particles[b].y);
-            ctx.stroke();
+            context.strokeStyle = `rgba(99, 102, 241, ${opacity * 0.25})`;
+            context.lineWidth = 0.8;
+            context.beginPath();
+            context.moveTo(particles[a].x, particles[a].y);
+            context.lineTo(particles[b].x, particles[b].y);
+            context.stroke();
           }
         }
         
@@ -126,26 +126,30 @@ export default function ParticleNetwork() {
         
         if (distanceMouse < mouse.radius) {
           const opacity = 1 - (distanceMouse / mouse.radius);
-          ctx.strokeStyle = `rgba(34, 211, 238, ${opacity * 0.5})`;
-          ctx.lineWidth = 1.2;
-          ctx.beginPath();
-          ctx.moveTo(particles[a].x, particles[a].y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.stroke();
+          context.strokeStyle = `rgba(34, 211, 238, ${opacity * 0.5})`;
+          context.lineWidth = 1.2;
+          context.beginPath();
+          context.moveTo(particles[a].x, particles[a].y);
+          context.lineTo(mouse.x, mouse.y);
+          context.stroke();
         }
       }
     };
 
     const animate = () => {
-      if (!ctx) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const currentCanvas = canvasRef.current;
+      if (!currentCanvas) return;
+      const context = currentCanvas.getContext('2d');
+      if (!context) return;
+
+      context.clearRect(0, 0, currentCanvas.width, currentCanvas.height);
       
       for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
+        particles[i].update(currentCanvas.width, currentCanvas.height);
+        particles[i].draw(context);
       }
       
-      connect();
+      connect(context);
       
       animationFrameId = requestAnimationFrame(animate);
     };

@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState, FormEvent } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import type { FormEvent } from 'react';
 import { personal } from '../data';
 
 export default function Contact() {

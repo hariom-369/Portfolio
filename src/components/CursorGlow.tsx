@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from 'react';
 export default function CursorGlow() {
   const [position, setPosition] = useState({ x: -1000, y: -1000 });
   const [isVisible, setIsVisible] = useState(false);
-  const requestRef = useRef<number>();
+  const requestRef = useRef<number>(0);
   const targetPos = useRef({ x: -1000, y: -1000 });
 
   useEffect(() => {
